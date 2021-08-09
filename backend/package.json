@@ -2,10 +2,15 @@
   "name": "backend",
   "version": "0.1.0",
   "description": "The backend side of the game",
+  "type": "module",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Rodrigo Saling",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "ws": "^8.0.0"
+  }
 }
