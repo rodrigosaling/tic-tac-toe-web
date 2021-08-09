@@ -6,7 +6,11 @@ function App() {
   const [socketUrl, setSocketUrl] = useState("ws://127.0.0.1:8080");
   const messageHistory = useRef([]);
 
-  const { sendMessage, lastMessage, readyState } = useWebSocket(socketUrl);
+  const { sendMessage, lastMessage, readyState } = useWebSocket(socketUrl, {
+    shouldReconnect: (closeEvent) => true,
+    reconnectAttempts: 10,
+    reconnectInterval: 3000,
+  });
 
   messageHistory.current = useMemo(
     () => messageHistory.current.concat(lastMessage),
