@@ -9,6 +9,8 @@ wss.on("connection", function connection(ws) {
     console.log("received: %s", message);
     ws.send(`something ${Date.now()}`);
   });
+
+  // setInterval(() => ws.send(`something ${Date.now()}`), 5000)
 });
 
 wss.on("error", (error) => {
