@@ -1,9 +1,9 @@
-import React, { useState, useCallback, useMemo, useRef } from "react";
-import useWebSocket, { ReadyState } from "react-use-websocket";
-import "./App.css";
+import React, { useState, useCallback, useMemo, useRef } from 'react';
+import useWebSocket, { ReadyState } from 'react-use-websocket';
+import './App.css';
 
 function App() {
-  const [socketUrl, setSocketUrl] = useState("ws://127.0.0.1:8080");
+  const [socketUrl, setSocketUrl] = useState('ws://127.0.0.1:8080');
   const messageHistory = useRef([]);
 
   const { sendMessage, lastMessage, readyState } = useWebSocket(socketUrl, {
@@ -17,14 +17,14 @@ function App() {
     [lastMessage]
   );
 
-  const handleClickSendMessage = useCallback(() => sendMessage("Hello"), []);
+  const handleClickSendMessage = useCallback(() => sendMessage('Hello'), []);
 
   const connectionStatus = {
-    [ReadyState.CONNECTING]: "Connecting",
-    [ReadyState.OPEN]: "Open",
-    [ReadyState.CLOSING]: "Closing",
-    [ReadyState.CLOSED]: "Closed",
-    [ReadyState.UNINSTANTIATED]: "Uninstantiated",
+    [ReadyState.CONNECTING]: 'Connecting',
+    [ReadyState.OPEN]: 'Open',
+    [ReadyState.CLOSING]: 'Closing',
+    [ReadyState.CLOSED]: 'Closed',
+    [ReadyState.UNINSTANTIATED]: 'Uninstantiated',
   }[readyState];
 
   return (
