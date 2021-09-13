@@ -1,6 +1,20 @@
-import React, { useState, useCallback, useMemo, useRef } from 'react';
+import React, {
+  useState,
+  useCallback,
+  useMemo,
+  useRef,
+  useContext,
+} from 'react';
 import useWebSocket, { ReadyState } from 'react-use-websocket';
 import './app.css';
+import Home from './pages/home';
+import Game from './pages/game';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+
+const routes = {
+  '/': () => <Home />,
+  '/game/:id': ({ id }) => <Game id={id} />,
+};
 
 function App() {
   const [socketUrl, setSocketUrl] = useState('ws://127.0.0.1:8080');
@@ -28,24 +42,37 @@ function App() {
   }[readyState];
 
   return (
-    <div className="App">
-      <button
-        onClick={handleClickSendMessage}
-        disabled={readyState !== ReadyState.OPEN}
-      >
-        Click Me to send 'Hello'
-      </button>
-
-      <span>The WebSocket is currently {connectionStatus}</span>
-      {lastMessage ? <span>Last message: {lastMessage.data}</span> : null}
-
-      <ul>
-        {messageHistory.current.map((message, idx) => (
-          <span key={idx}>{message ? message.data : null}</span>
-        ))}
-      </ul>
-    </div>
+    <Router>
+      <Switch>
+        <Route path="/game/:id">
+          <Game />
+        </Route>
+        <Route path="/">
+          <Home />
+        </Route>
+      </Switch>
+    </Router>
   );
+
+  // return (
+  //   /*<div className="App">
+  //     <button
+  //       onClick={handleClickSendMessage}
+  //       disabled={readyState !== ReadyState.OPEN}
+  //     >
+  //       Click Me to send 'Hello'
+  //     </button>
+  //
+  //     <span>The WebSocket is currently {connectionStatus}</span>
+  //     {lastMessage ? <span>Last message: {lastMessage.data}</span> : null}
+  //
+  //     <ul>
+  //       {messageHistory.current.map((message, idx) => (
+  //         <span key={idx}>{message ? message.data : null}</span>
+  //       ))}
+  //     </ul>
+  //   </div>*/
+  // );
 }
 
 export default App;
