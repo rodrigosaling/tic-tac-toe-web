@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useMemo, useRef } from 'react';
 import useWebSocket, { ReadyState } from 'react-use-websocket';
-import './App.css';
+import './app.css';
 
 function App() {
   const [socketUrl, setSocketUrl] = useState('ws://127.0.0.1:8080');
