@@ -6,7 +6,7 @@ const Home = () => {
   const handleNicknameChange = (event) => {
     const { value } = event.target;
     setNickname(value);
-    window.localStorage.setItem('nickname', value);
+    window.localStorage.setItem('ttt_nickname', value);
   };
 
   return (
