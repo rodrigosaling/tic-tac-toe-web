@@ -24,3 +24,14 @@ yarn-error.log*
 
 .idea/
 .vscode/
+
+# web
+web/node_modules
+
+# server
+server/node_modules/
+server/node_modules/.package-lock.json
+server/build/
+npm-debug.log
+.env
+
