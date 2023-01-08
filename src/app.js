@@ -8,7 +8,7 @@ import React, {
   useReducer,
 } from 'react';
 import useWebSocket, { ReadyState } from 'react-use-websocket';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import './app.css';
 import Home from './pages/home';
 import Game from './pages/game';
@@ -49,14 +49,10 @@ function App() {
   return (
     <GameContextProvider>
       <Router>
-        <Switch>
-          <Route path="/game/:id">
-            <Game />
-          </Route>
-          <Route path="/">
-            <Home />
-          </Route>
-        </Switch>
+        <Routes>
+          <Route path="/game/:id" element={<Game />}></Route>
+          <Route path="/" element={<Home />}></Route>
+        </Routes>
       </Router>
     </GameContextProvider>
   );
